@@ -22,7 +22,7 @@ function App() {
 }
 
 function Home() {
-  return <div>Home</div>;
+  return <div></div>;
 }
 
 function Dashboard() {
