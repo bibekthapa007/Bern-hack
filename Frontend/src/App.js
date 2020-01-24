@@ -1,7 +1,8 @@
 import React from "react";
 import "./App.css";
+import "antd/dist/antd.css";
 import { Switch, Route } from "react-router-dom";
-import LoginForm from "./components/loginform";
+import { Home, Dashboard, LinkPage, Login } from "./screens";
 function App() {
   return (
     <Switch>
@@ -9,24 +10,16 @@ function App() {
         <Home />
       </Route>
       <Route path="/login">
-        <LoginForm />
+        <Login />
       </Route>
       <Route path="/dashboard/">
         <Dashboard />
       </Route>
-      <Route path="/link/:linkid">
-        <Dashboard />
+      <Route path="/link/:id">
+        <LinkPage />
       </Route>
     </Switch>
   );
-}
-
-function Home() {
-  return <div></div>;
-}
-
-function Dashboard() {
-  return <div></div>;
 }
 
 export default App;
