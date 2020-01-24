@@ -22,15 +22,4 @@ function App() {
   );
 }
 
-<<<<<<< HEAD
-=======
-function Home() {
-  return <div>Home</div>;
-}
-
-function Dashboard() {
-  return <div>Dashboard</div>;
-}
-
->>>>>>> 7ad2dfcc62e74d52e8aea8e2dd146f7657d2bd50
 export default App;
