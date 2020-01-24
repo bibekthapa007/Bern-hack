@@ -15,7 +15,11 @@ function Navbar() {
   return (
     <Row type="flex" justify="end">
       <div className="navbar">
-        <Menu inlineCollapsed={collapse} style={{ border: 0 }}>
+        <Menu
+          inlineCollapsed={collapse}
+          style={{ border: 0 }}
+          defaultSelectedKeys={"1"}
+        >
           <Menu.Item key="0">
             <Icon type="fire" theme="filled" style={{ fontSize: "26px" }} />
           </Menu.Item>
@@ -35,7 +39,7 @@ function Navbar() {
           </Menu.Item>
 
           <Menu.Item key="2" style={{ margin: " 20px 0px" }}>
-            <Link to="/404">
+            <Link to="/dashboard">
               <Icon type="dashboard" style={{ fontSize: "20px" }} />
               <span
                 style={{
