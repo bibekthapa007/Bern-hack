@@ -29,7 +29,7 @@ function Home() {
 }
 
 function Dashboard() {
-  return <div></div>;
+  return <div>Dashboard</div>;
 }
 
 >>>>>>> 7ad2dfcc62e74d52e8aea8e2dd146f7657d2bd50
