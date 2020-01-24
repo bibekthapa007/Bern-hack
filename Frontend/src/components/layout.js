@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./navbar/navbar";
-import { Row, Col } from "antd";
+import { Row, Col, PageHeader } from "antd";
 function Layout(props) {
   return (
     <div>
@@ -9,9 +9,8 @@ function Layout(props) {
           <Navbar />
         </Col>
         <Col xs={20} sm={20} md={20} lg={18} xl={18} className="l-main">
-          <Row type="flex">
-            <Col className="l-main-main">{props.children}</Col>
-          </Row>
+          <PageHeader title={props.title} />
+          {props.children}
         </Col>
       </Row>
     </div>

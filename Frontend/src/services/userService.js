@@ -1,7 +1,7 @@
 import http from "./httpService";
 import { apiUrl } from "../config.json";
 
-const apiEndpoint = apiUrl + "/users";
+const apiEndpoint = apiUrl + "/auth/register";
 
 export function register(user) {
   return http.post(apiEndpoint, {
@@ -10,6 +10,11 @@ export function register(user) {
   });
 }
 
+export function logout() {
+  localStorage.removeItem("token");
+}
+
 export default {
-  register
+  register,
+  logout
 };
