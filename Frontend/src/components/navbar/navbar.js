@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Row, Menu, Icon } from "antd";
 import { Link } from "react-router-dom";
 import "./navbar.css";
+import authService from "../../services/authService";
 function Navbar() {
   const [collapse, setcollapse] = useState(false);
   const toggleCollapse = () => {
@@ -25,7 +26,7 @@ function Navbar() {
           </Menu.Item>
           <Menu.Item key="1" style={{ margin: " 20px 0px" }}>
             <Link to="/">
-              <Icon type="home" style={{ fontSize: "20px" }} />
+              <Icon type="home" rotate={360} style={{ fontSize: "20px" }} />
               <span
                 style={{
                   fontSize: "18px",
@@ -53,41 +54,64 @@ function Navbar() {
             </Link>
           </Menu.Item>
           <Menu.Item key="3" style={{ margin: " 20px 0px" }}>
-            <Icon type="pic-left" style={{ fontSize: "20px" }} />
-            <span
-              style={{
-                fontSize: "18px",
-                fontWeight: "bold",
-                paddingLeft: "5px"
-              }}
-            >
-              Articles
-            </span>
+            <Link to="/articles">
+              <Icon type="pic-left" style={{ fontSize: "20px" }} />
+              <span
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                  paddingLeft: "5px"
+                }}
+              >
+                Articles
+              </span>
+            </Link>
           </Menu.Item>
           <Menu.Item key="4" style={{ margin: " 20px 0px" }}>
-            <Icon type="history" style={{ fontSize: "20px" }} />
-            <span
-              style={{
-                fontSize: "18px",
-                fontWeight: "bold",
-                paddingLeft: "5px"
-              }}
-            >
-              History
-            </span>
+            <Link to="/history">
+              <Icon type="history" style={{ fontSize: "20px" }} />
+              <span
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                  paddingLeft: "5px"
+                }}
+              >
+                History
+              </span>
+            </Link>
           </Menu.Item>
-          <Menu.Item key="5" style={{ margin: " 20px 0px" }}>
-            <Icon type="setting" style={{ fontSize: "20px" }} />
-            <span
-              style={{
-                fontSize: "18px",
-                fontWeight: "bold",
-                paddingLeft: "5px"
-              }}
-            >
-              Settings
-            </span>
-          </Menu.Item>
+          {authService.getCurrentUser() ? (
+            <Menu.Item key="5" style={{ margin: " 20px 0px" }}>
+              <Link to="/logout">
+                <Icon type="logout" style={{ fontSize: "20px" }} />
+                <span
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: "bold",
+                    paddingLeft: "5px"
+                  }}
+                >
+                  Log out
+                </span>
+              </Link>
+            </Menu.Item>
+          ) : (
+            <Menu.Item key="5" style={{ margin: " 20px 0px" }}>
+              <Link to="/login">
+                <Icon type="login" style={{ fontSize: "20px" }} />
+                <span
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: "bold",
+                    paddingLeft: "5px"
+                  }}
+                >
+                  Log In
+                </span>
+              </Link>
+            </Menu.Item>
+          )}
         </Menu>
       </div>
     </Row>

@@ -2,4 +2,7 @@ import Home from "./home";
 import Dashboard from "./dashboard";
 import LinkPage from "./linkpage";
 import Login from "./login";
-export { Home, Dashboard, LinkPage, Login };
+import LogOut from "./logout";
+import History from "./history";
+import Articles from "./articles";
+export { Home, Dashboard, LinkPage, Login, LogOut, History, Articles };

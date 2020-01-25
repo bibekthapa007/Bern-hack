@@ -3,6 +3,8 @@ import Layout from "../components/layout";
 import { getAllLinks } from "../services/linkService";
 import { Tabs } from "antd";
 import { Table, Button, Row, Col } from "antd";
+import { Link } from "react-router-dom";
+import { url } from "../config.json";
 
 const { TabPane } = Tabs;
 export default function Dashboard() {
@@ -12,11 +14,10 @@ export default function Dashboard() {
     let get = async () => {
       let res = await getAllLinks();
       setdata(res.data);
-      console.log("get");
+      console.log("data", res.data);
     };
     get();
   }, []);
-  console.log(data);
   function callback(key) {
     console.log(key);
   }
@@ -24,7 +25,12 @@ export default function Dashboard() {
     {
       title: "redirect-link",
       dataIndex: "hash",
-      key: "hash"
+      key: "hash",
+      render: hash => (
+        <a target="_blank" href={url + "l/" + hash} title={hash}>
+          {url + "l/" + hash}
+        </a>
+      )
     },
     {
       title: "original-link",
@@ -36,7 +42,14 @@ export default function Dashboard() {
       title: "details",
       dataIndex: "hash",
       key: "details",
-      render: text => <Button type="primary">{"view details"}</Button>
+      render: text => {
+        console.log(text);
+        return (
+          <Link to={"/link/" + text}>
+            <Button type="primary">view details</Button>
+          </Link>
+        );
+      }
     }
   ];
   return (
