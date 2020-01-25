@@ -10,21 +10,23 @@ import {
   Row,
   Col
 } from "antd";
+import { withRouter } from "react-router-dom";
 import user from "../services/userService";
 import auth from "../services/authService";
 
 class NormalLoginForm extends React.Component {
   state = { error: true };
-  gotoHome() {
-    window.location = "/";
+  gotoHome(history) {
+    history && history.push("/");
+    console.log(this.props);
   }
   handleSubmit = async e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       console.log("submitting", values);
-      user.register(values).then(response => {
-        auth.loginWithJwt(response.data.jwt);
-        console.log(response);
+      user.register(values).then(async response => {
+        await auth.loginWithJwt(response.data.jwt);
+        this.gotoHome(this.props.history);
       });
     });
   };
@@ -40,7 +42,10 @@ class NormalLoginForm extends React.Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <React.Fragment>
-        <PageHeader title="Log in or Sign up" onBack={this.gotoHome} />
+        <PageHeader
+          title="Log in or Sign up"
+          onBack={() => this.gotoHome(this.props.history)}
+        />
         <Row type="flex" justify="center">
           <Col>
             <Form onSubmit={this.handleSubmit} className="login-form">
@@ -106,5 +111,6 @@ class NormalLoginForm extends React.Component {
     );
   }
 }
-const Login = Form.create({ name: "normal_login" })(NormalLoginForm);
+const LoginF = Form.create({ name: "normal_login" })(NormalLoginForm);
+const Login = withRouter(LoginF);
 export default Login;

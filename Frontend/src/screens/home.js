@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Layout from "../components/layout";
 import { useHistory } from "react-router-dom";
-import { Input, Row, Col, Button, Card } from "antd";
+import { Input, Row, Col, Button, message } from "antd";
 import { getLink } from "../services/linkService";
-let { Meta } = Card;
+import auth from "../services/authService";
 export default function Home() {
   const [state, setstate] = useState(null);
   let history = useHistory();
@@ -11,6 +11,7 @@ export default function Home() {
     setstate(e.target.value);
   }
   async function followLink() {
+    if (!auth.getCurrentUser()) return message.info("You must log in");
     getLink(state).then(res => {
       console.log(res);
       history.push("/link/" + res.data.link.hash);
@@ -18,7 +19,7 @@ export default function Home() {
   }
   return (
     <Layout title="Home">
-      <Row type="flex" justify="center">
+      <Row type="flex" justify="start" style={{ marginLeft: "20px" }}>
         <Col>
           <h1>BiuBiu TRACKER</h1>
         </Col>
@@ -41,42 +42,7 @@ export default function Home() {
           </Row>
         </Col>
       </Row>
-      <Card
-        hoverable
-        style={{ width: 240 }}
-        cover={
-          <img
-            alt="example"
-            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-          />
-        }
-      >
-        <Meta title="Shorten URLs" />
-      </Card>
-      <Card
-        hoverable
-        style={{ width: 240 }}
-        cover={
-          <img
-            alt="example"
-            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-          />
-        }
-      >
-        <Meta title="Track IP address and Location" />
-      </Card>
-      <Card
-        hoverable
-        style={{ width: 240 }}
-        cover={
-          <img
-            alt="example"
-            src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-          />
-        }
-      >
-        <Meta title="Save for future refrence" />
-      </Card>
+      ,
     </Layout>
   );
 }
