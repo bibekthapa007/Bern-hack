@@ -18,6 +18,7 @@ function App() {
     <Switch>
       <Route path="/login" component={Login} />
 
+
       <Route exact path="/" component={Home} />
       <Route path="/logout" component={LogOut} />
       <ProtectedRoute path="/dashboard" component={Dashboard} />
