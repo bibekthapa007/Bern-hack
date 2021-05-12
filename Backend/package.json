@@ -24,7 +24,7 @@
     "iplocation": "^6.1.0",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.0.1",
-    "nodemailer": "^6.4.1",
+    "nodemailer": "^6.4.16",
     "passport": "^0.4.1",
     "passport-facebook": "^3.0.0",
     "passport-google-oauth": "^2.0.0",
