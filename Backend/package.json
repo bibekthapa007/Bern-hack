@@ -22,7 +22,7 @@
     "express-useragent": "^1.0.13",
     "external-ip": "^2.1.1",
     "iplocation": "^6.1.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "mysql2": "^2.0.1",
     "nodemailer": "^6.4.1",
     "passport": "^0.4.1",
